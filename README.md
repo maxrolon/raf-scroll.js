@@ -7,8 +7,8 @@ The premiss for this module is to utilize animation frames to trigger scroll cal
 npm i raf-scroll.js --save
 ```
 
-Usage: 
-```
+## Usage
+```javascript
 import scroll from 'raf-scroll.js'
 
 scroll( (y, prevY) => {
