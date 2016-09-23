@@ -1,3 +1,9 @@
-import scroll from './../src/main.js'
+import scroll from './../src/index.js'
 
-scroll( (x,y) => console.dir([x,y]) )
+scroll( (y1,y2) => true )
+scroll( (y1,y2) => true )
+scroll( (y1,y2) => true )
+scroll( (y1,y2) => true )
+scroll( (y1,y2) => true )
+scroll( (y1,y2) => console.log(y1 + ' ' + y2) )
+scroll( (y1,y2) => true )
