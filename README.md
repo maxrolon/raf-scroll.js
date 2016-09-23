@@ -2,9 +2,14 @@ A simple, performance optimized replacement for ```window.addEventListener('scro
 
 The premiss for this module is to utilize animation frames to trigger scroll callbacks in the appropriate render pipeline location of each frame.
 
-Usage: 
+## Install 
+```bash
+npm i raf-scroll.js --save
 ```
-import scroll from './../<location>'
+
+## Usage
+```javascript
+import scroll from 'raf-scroll.js'
 
 scroll( (y, prevY) => {
 }
