@@ -42,11 +42,25 @@ var Scroll = function () {
     };
   }
 
+  /*
+   * Add functions into an array.
+   * These will be called in the RAF
+   *
+   * @param {function} cb function to call
+   * @param {string} key key to reference the function (todo)
+   */
+
+
   _createClass(Scroll, [{
     key: 'add',
     value: function add(cb, key) {
       this.queue.push(cb);
     }
+
+    /* Tracks the event handlers attached via
+     * this module
+     */
+
   }, {
     key: 'enable',
     value: function enable() {
@@ -81,6 +95,14 @@ var Scroll = function () {
         this.tickId = requestFrame(handleScroll) || true;
       }
     }
+
+    /* The nuts n' bolts. This is the RAF that
+     * calls each function in the queue. Each function
+     * is passed the current offset value and the last
+     * recorded offset value (often the same depending)
+     * on the speed of the scroll)
+     */
+
   }, {
     key: 'handleScroll',
     value: function handleScroll() {
@@ -104,8 +126,15 @@ var Scroll = function () {
         this.timeout = setTimeout(detectIdle, 200);
       }
 
+      this.tickId = false;
       this.tick();
     }
+
+    /* If the user hasn't scrolled in a while
+     * we want to exit out of the RAF requence
+     * and re-attach event bindings
+     */
+
   }, {
     key: 'detectIdle',
     value: function detectIdle() {
@@ -119,6 +148,11 @@ var Scroll = function () {
       this.lastError = msg;
       console.warn(msg);
     }
+
+    /*
+     * @static
+     */
+
   }], [{
     key: 'isSupported',
     value: function isSupported() {
@@ -135,6 +169,22 @@ var Scroll = function () {
 
   return Scroll;
 }();
+
+/*
+ * This singleton pattern
+ * allows us to unit test the module
+ * by exposing all methods. The reset property
+ * allows us to reset the state of the singleton
+ * between tests.. May be useful outside of the 
+ * testing context?
+ *
+ * @param {function} cb function to add to queue
+ * @param {key} key key to reference the function in the queue
+ * @param {bool} obj:base Return the base class or the singleton?
+ * @param {bool} obj:reset Reset the singleton so that a new instance in created
+ * @param {bool} obj:enable Enable the event handler and start the animation frame
+ */
+
 
 exports.default = function () {
   var cb = arguments.length <= 0 || arguments[0] === undefined ? false : arguments[0];

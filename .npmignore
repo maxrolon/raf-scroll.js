@@ -2,3 +2,4 @@
 /.git
 /.gitattributes
 /npm-debug.log
+.babelrc
