@@ -12,7 +12,8 @@ npm i raf-scroll.js --save
 import scroll from 'raf-scroll.js'
 
 scroll( (y, prevY) => {
-}
+  //This callback will get executed on every scroll event..
+})
 ```
 
 The callback passed to the scroll function will get passed the current scrollY value (param 1) and the previous scrollY value (param 2). From this you will be able to ascertain scroll direction. 
